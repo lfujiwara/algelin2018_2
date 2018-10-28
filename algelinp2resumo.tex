@@ -1,0 +1,351 @@
+\documentclass[12pt]{article}
+\usepackage[right=2cm, left=2cm, top=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{framed}
+\usepackage[utf8]{inputenc}
+\author{BCC IME-USP 2018}
+\title{Álgebra Linear - Resumo P2}
+
+\begin{document}
+\maketitle
+\section{Aula 9 - Sistemas Lineares}
+\paragraph{Sistemas Lineares - Definição}
+
+	\begin{itemize}
+	\item Um sistema linear é uma equação de forma $AX = B$, tal que:\\
+	\fbox{\parbox{350pt}{
+	$A$ é uma matriz com $n$ linhas e $m$ colunas, $B$ e $X$ são da forma:\\
+	$
+	B = b^t = \begin{bmatrix} b_1 \\ \vdots \\ b_n \end{bmatrix};
+	X = \begin{bmatrix} x_1 \\ \vdots \\ x_m \end{bmatrix} 
+	$
+	}}
+	
+	\item Tal sistema se equivale à:
+	$ \left\lbrace
+	\begin{matrix} 
+	a_{11}x_1 & + & \dots & + & a_{1m}x_m = b_1\\
+	\vdots & & \ddots & & \vdots \\
+	 a_{n1}x_1 & + & \dots & + & a_{nm}x_m = b_n\\
+	\end{matrix}\right.
+	$
+	
+	\item Chamamos $A$ de matriz dos coeficientes do sistemas e a matriz Â com \\[5pt]
+	Â $= \begin{bmatrix}
+	a_{11} & \dots & a_{1m} & b_1 \\
+	\vdots & \ddots & \vdots \\
+	a_{n1} & \dots & a{nm} & b_n
+	\end{bmatrix}$
+	de \textit{matriz estendida} do sistema linear.
+
+	\item Chamamos o sistema de sistema homogêneo se, e somente se $B = \overrightarrow{0}$.
+	\end{itemize}
+	
+\paragraph{Sistemas Lineares - Propriedades e outros}
+
+\begin{itemize}
+	\item Equivalência sobre troca de linhas $L_i \leftrightarrow L_j$:\\
+		Dado um sistema linear $AX=B$, um sistema linear denotado por\\
+		$A_{L_i \leftrightarrow L_j}X = B_{L_i \leftrightarrow L_j}$, onde $A_{L_i \leftrightarrow L_j}$ é
+		a matriz $A$ com as linhas $i$ e $j$ trocadas, e o mesmo realizado com $B_{L_i \leftrightarrow L_j}$.
+		Isto é, as soluções de ambos os sistemas são idênticas.
+		
+	\item Equivalência sobre troca de linhas $L_i \leftrightarrow L_i - \lambda L_j$:\\
+		A propriedade acima segue (equivalência) se a linha $i$ for trocada por uma combinação linear $L_i - \lambda L_j$.
+		
+	\item Definimos as operações de trocas de linhas $L_i \leftrightarrow L_j$ em $A,B$ como operações elementares sobre qualquer
+	sistema $AX=B$.
+	
+	\item Matriz escalonada - Definição:
+	\begin{itemize}
+		\item[a.] Se a linha $i$ for nula, todas as linhas abaixo de $i$ ($j \vert j > i)$) são nulas.
+		\item[b.] A primeira entrada não nula de cada linhas é 1.
+		\item[c.] Utilizando as operações elementares acima, podemos escalonar qualquer matriz de um sistema linear, em especial, procuraremos
+		escalonar matrizes estendidas, pois, dessa forma, mantemos a equivalência do sistema linear, pois realizaremos as mesmas mudanças
+		para $B$.
+	\end{itemize}
+	
+	\item Soluções de sistemas lineares não homogêneos:
+	\begin{itemize}
+		\item Considere o sistema linear não homogêneo $AX_0 = B$.
+		\item Considere $X_0$, uma solução particular desse sistema, e $W$ o espaço de soluções do sistema homogêneo associado
+		($AX = \overrightarrow{0}$).
+		\item Então, existe um $w \in W$ tal que, sendo $X_0$ e $X$ soluções particulares do sistema não homogêneo, vale $X = X_0 + w$.
+		\item O que queremos dizer aqui é que dada uma solução particular do sistema não homogêneo, as outras soluções do sistema podem
+		ser construída com essa solução encontrada mais alguma solução do sistema homogêneo associado.
+	\end{itemize}
+\end{itemize}
+
+\paragraph{Sistemas Lineares - Exemplos}
+
+\subparagraph{Exemplo 1:}
+	\begin{itemize}
+	\item Considere o sistema:
+	$\begin{bmatrix}
+	1 & -1 & 1 & 2 \\ 2 & 1 & 3 & 2 \\ 1 & 5 & 3 & -2
+	\end{bmatrix}$
+	$\begin{bmatrix}
+	x \\ y \\ z \\ w
+	\end{bmatrix}$
+	$ = $
+	$\begin{bmatrix}
+	0 \\ 0 \\ 0 
+	\end{bmatrix}$
+	\item Sua matriz estendida:
+	$\begin{bmatrix}
+	1 & -1 & 1 & 2 & 0\\ 2 & 1 & 3 & 2 & 0\\ 1 & 5 & 3 & -2 & 0
+	\end{bmatrix}$
+	
+	\item Escalonando a matriz estendida:
+		\begin{itemize}
+		\item $\begin{bmatrix}
+		1 & -1 & 1 & 2 & 0 \\ 2 & 1 & 3 & 2 & 0 \\ 1 & 5 & 3 & -2 & 0
+		\end{bmatrix}$
+		$\begin{matrix} L_2 \leftrightarrow L_2 - 2L_1 \\ L_3 \leftrightarrow L_3 - L_1 \end{matrix}$
+		$\begin{bmatrix}
+		1 & -1 & 1 & 2 & 0 \\ 0 & 3 & 1 & -2 & 0 \\ 0 & 6 & 2 & -4 & 0
+		\end{bmatrix}$
+		
+		\item $\begin{bmatrix}
+		1 & -1 & 1 & 2 & 0 \\ 0 & 3 & 1 & -2 & 0 \\ 0 & 6 & 2 & -4 & 0
+		\end{bmatrix}$
+		$\begin{matrix} L_3 \leftrightarrow L_3 - 2L_2 \end{matrix}$
+		$\begin{bmatrix}
+		1 & -1 & 1 & 2 & 0 \\ 0 & 3 & 1 & -2 & 0 \\ 0 & 0 & 0 & 0 & 0
+		\end{bmatrix}$
+		
+		\item $\begin{bmatrix}
+		1 & -1 & 1 & 2 & 0 \\ 0 & 3 & 1 & -2 & 0 \\ 0 & 0 & 0 & 0 & 0
+		\end{bmatrix}$
+		$\begin{matrix} L_2 \leftrightarrow L_2 - \frac{2}{3}L_2 \end{matrix}$
+		$\begin{bmatrix}
+		1 & -1 & 1 & 2 & 0 \\ 0 & 1 & \frac{1}{3} & -\frac{2}{3} & 0 \\ 0 & 0 & 0 & 0 & 0
+		\end{bmatrix}$
+		\end{itemize}
+	
+	\item Temos o sistema equivalente:\\
+	$\begin{bmatrix}
+	1 & -1 & 1 & 2 \\ 0 & 1 & \frac{1}{3} & -\frac{2}{3} \\ 0 & 0 & 0 & 0
+	\end{bmatrix}$	
+	$\begin{bmatrix}
+	x \\ y \\ z \\ w
+	\end{bmatrix}$	
+	$=$
+	$\begin{bmatrix}
+	0 \\ 0 \\ 0
+	\end{bmatrix}$	
+	
+	\item Ou seja:
+	$	\begin{cases}
+	x - y + z + 2w = 0 \\
+	y + \frac{1}{3}z - \frac{2}{3}w = 0
+	\end{cases}$	
+	
+	\item
+	$ \begin{cases}
+	y = - \frac{1}{3}z + \frac{2}{3}w \\
+	x = y - z - 2w = -\frac{4}{3}z - \frac{4}{3}w \\
+	\end{cases}$
+	
+	\item Logo, temos a solução:
+	$(x,y,z,w) = \left( -\frac{4}{3}z - \frac{4}{3}w, - \frac{1}{3}z + \frac{2}{3}w, z, w \right) \\ =
+	z \left( -\frac{4}{3}, -\frac{1}{3}, 1, 0 \right) + w \left( -\frac{4}{3}, \frac{2}{3}, 0, 1 \right)
+	$
+	
+	\item E o espaço de soluções: $Span_{\mathbb{K}} \left[ \left( -\frac{4}{3}, -\frac{1}{3}, 1, 0 \right),
+	\left( -\frac{4}{3}, \frac{2}{3}, 0, 1 \right) \right] $
+	
+	\end{itemize}
+\newpage
+\section*{Aula 10 - Determinantes}
+\paragraph{Introdução\\}
+	Dada uma matriz quadrada	de tamanho $n$ com entradas em um corpo $\mathbb{K}$, ou seja, um elemento
+	do $\mathbb{K}$-espaço vetorial $V = \mathbb{K}^n \times \dots \times \mathbb{K}^n$, o determinante é uma função
+	$det: V \rightarrow \mathbb{K}$. Melhor dizendo, procuramos uma função em que \textbf{podemos enviar uma matriz e receber
+	um outro valor pertencente ao corpo que a matriz possui entradas}, como, por exemplo, temos uma matriz com entradas em $				\mathbb{R}$ e então podemos ligá-la ao $\mathbb{R}$.
+	($V \rightarrow \mathbb{R}$)
+	
+\paragraph{Definindo a função (casos $n^\prime = 1$ até $n^\prime = 3$)}
+\begin{enumerate}
+	\item Considere a matriz $A = (a_{11})$, representante do sistema $ax=b$, assumimos que $det(A) = a_{11}$, vale notar que a condição fundamental para que o sistema seja possível (dado $b\neq 0$) é que $a \neq 0$.
+	
+	\item Considere a matriz $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, claramente, pode representar o 
+sistema $\begin{cases} ax + by = r \\ cx + dy = s \end{cases}$, calculando o valor de $x$, temos
+$(ad - bc)x = rd - sb$ e para $y$, $(ad - bc)y = bs - rc$. Para o sistema ser resolvido, temos a condição fundamental
+$ad-bc \neq 0$. Nota-se, portanto, que $ad - bc$ deve ser um \textbf{invariante} da matriz, o qual define uma condição fundamental para que a mesma seja resolvida, temos, então, $det(A) = ad - bc$.
+
+	\item Considere as matrizes\\
+	$A = \begin{bmatrix}
+	a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}$ e $B = \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix}$\\ Definimos com essas matrizes o sistema $\begin{cases} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3 \end{cases}$\\[10pt]
+	Para resolver o sistema, dividimos em: \\[10pt] $\begin{cases} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2\end{cases},\begin{cases} a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2 \\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3 \end{cases}$\\[10pt] e resolvemos cada um como fizemos no caso anterior, resultando em:\\[10pt] $\begin{cases} (a_{21}a_{12} - a_{22}a_{11})x_2 + (a_{21}a_{13} - a_{11}a_{23})x_3 = b_3 \\ (a_{31}a_{22} - a_{21}a_{32})x_2 + (a_{31}a_{23} - a_{21}a_{33})x_3 = b_3 \end{cases}$ \\[10pt]
+	Como condição para possibilidade do sistema, resolvendo de forma análoga ao item anterior, temos:\\
+	$(a_{21}a_{12} - a_{22}a_{11})(a_{31}a_{23} - a_{21}a_{33}) - (a_{31}a_{22} - a_{21}a_{32})(a_{21}a_{13} - a_{11}a_{23})$
+	\\[5pt]
+	$= a_{21}a_{12}a_{23}a_{31} - a_{21}a_{12}a_{21}a_{33} - \underline{a_{22}a_{11}a_{23}a_{31}} + a_{21}a_{11}a_{22}a_{33} \\	
+	- a_{21}a_{13}a_{22}a_{31} + \underline{a_{22}a_{11}a_{23}a_{31}} + a_{21}a_{13}a_{21}a_{32} - a_{21}a_{11}a_{23}a_{32}$ \\[10pt]
+	Eliminando os zeros e o elemento em comum (o qual não deve influenciar o resultado da função, pois procuramos um invariante), temos:\\
+	$= a_{12}a_{23}a_{31} - a_{12}a_{21}a_{33} + a_{11}a_{22}a_{33} - a_{13}a_{22}a_{31} + a_{13}a_{21}a_{32} - a_{11}a_{23}a_{32}$\\[10pt]
+	$= a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - (a_{12}a_{21}a_{33} + a_{13}a_{22}a_{31} + a_{11}a_{23}a_{32})$
+\end{enumerate}\
+
+\paragraph{Estudando os casos dados}
+\begin{itemize}
+	\item Para estudar os casos dados, revisitamos os grupos de permutações, para o caso $n = 1$, é trivial, para o caso $n=2$, temos a matriz:
+	$\begin{bmatrix} 1 & 2 \\ \sigma(1) & \sigma(2) \end{bmatrix}$ representando uma permutação.\\[10pt]
+	Obviamente, sabemos que a quantidade de permutações para $n=2$ é 2, sendo a permutação netura, em que nada é alterado, portanto, $\begin{bmatrix} 1 & 2 \\ 1 & 2 \end{bmatrix} = \sigma_1 \leftrightarrow a_{11}a_{22}$, a permutação em que trocamos de lugar os elementos (apenas uma nesse caso), $\begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix} = \sigma_2 \leftrightarrow a_{12}a_{21}$ (aqui associamos uma permutação com um dos termos do determinante da matriz 2$\times$2. Note que a permutação neutra ($\sigma_0$) se associa com o sinal positivo, e a permutação 1 ($\sigma_1$) se associa com o sinal negativo.
+
+	\item Definimos aqui o conceito da paridade de permutações, dada uma permutação, sua paridade é definida pela quantidade de inversões que a mesma possui, isto é, todos os pares $x,y$ tais que $x < y$ e $\sigma(x) > \sigma(y)$. Por exemplo, na permutação $\sigma = \begin{bmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{bmatrix}$, analisamos os pares $(1,2),(1,3),(2,3)$:
+	\begin{itemize}
+		\item $(1,2)$: $1 < 2$; $\sigma(1) = 3$, $\sigma(2) = 1 \rightarrow \sigma(1) > \sigma(2) \rightarrow$  1 inversão.
+		\item $(1,3)$: $1 < 3$; $\sigma(1) = 3$, $\sigma(3) = 2 \rightarrow \sigma(1) > \sigma(3) \rightarrow$  1 inversão.
+		\item $(2,3)$: $2 < 3$; $\sigma(2) = 1$, $\sigma(3) = 2 \rightarrow \neg (\sigma(2)>\sigma(3)) \rightarrow$ sem inversão.
+		\item Total: 2 inversões
+	\end{itemize}
+		
+	\item O sinal associado à cada permutação, e, por consequência, a um termo do determinante, é relacionado com a paridade de sua permutação, se esta é par, o sinal é positivo, se não, é negativo, ou seja: $sign(\sigma)=(-1)^{n_i}$, sendo $n_i$ a quantidade de inversões da permutação. No caso anterior, temos $n_i = 2$, portanto $sign(\sigma) = (-1)^2$, ou seja, positivo.	
+\end{itemize}
+
+\paragraph{Definição do determinante\\}
+	Podemos, então, definir a função determinante:\\[10pt]
+	\centerline{\fbox{
+	$det(A) = \sum\limits_{\sigma \in S_n} sign(\sigma) a_{{1\sigma(1)}} a_{{2\sigma(2)}} \dots a_{{n\sigma(n)}}$	
+	}}
+	
+\newpage
+\section*{Aula 11 - Determinantes (parte 2)}
+\paragraph{Permutações\\}
+	Considere os polinômios das variáveis $x_1, x_2, x_3$:
+	\begin{center}
+	$P_2(x_1,x_2) = x_1 - x_2$ \\[5pt] 
+	$P_3(x_1,x_2,x_3) = (x_1 - x_2)(x_2 - x_3)$ \\[5pt]
+	$P_n(x_1, \dots, x_n) = \prod\limits_{1 \leq i < j \leq n} (x_i - x_j)$
+	\end{center}
+	e defina:
+	\begin{center}
+	$\sigma P_2(x_1, x_2) = P_2(x_{\sigma(1)}, x_{\sigma(2)})$\\
+	$\sigma P_3(x_1, x_2, x_3) = P_3(x_{\sigma(1)}, x_{\sigma(2)}, x_{\sigma(3)})$
+	\end{center}
+	Para o caso geral:\begin{center}$P_n(x_{\sigma(1)}, \dots, x_{\sigma(n)}) = \prod\limits_{1 \leq i < j \leq n} (x_{\sigma(i)} - x_{\sigma(j)})$\end{center}
+	Note que $\sigma P_n \in \lbrace P_n, -P_n \rbrace$, pois a diferença dois-a-dois entre todos os monômios está definida, então, qualquer permutação apenas troca o sinal dessa diferença, é trivial que, portanto, para um número par de trocas, o sinal será positivo, e, caso contrário, será negativo.\\
+	Logo, temos:
+	\begin{center}
+	$\sigma P_n = sign(\sigma) P_n$ \\[5pt]
+	$sign(\sigma \tau) = \frac{\sigma \tau P_n}{P_n} = \frac{\sigma (sign(\tau)P_n)}{P_n} = sign(\tau)\frac{sign(\sigma) P_n}{P_n}= sign(\sigma) sign( \tau )$
+	\end{center}
+	Do último, temos que $sign: S_n \rightarrow \lbrace 1, -1 \rbrace$ é um homomorfismo de grupos, pois $sign(\sigma * \tau) = sign(\sigma) \times sign(\tau)$ (preserva as operações dos grupos).\\
+	Vale dizer que no. de permutações pares = ímpares = $\frac{n!}{2}$
+
+\paragraph{Ciclos\\}
+		Um $k$-ciclo é um elemento $\alpha \in S_n$ que "movimenta" $k \geq 2$ elementos, $i_1, \dots, i_k$ de $\lbrace 1, \dots, n \rbrace$ da seguinte forma:
+		\begin{center}
+		$\begin{cases}
+			\alpha(i_j) = i_{j+1}$, se $1 \leq j \leq k - 1 \\
+			\alpha(i_k) = i_1 \\
+			\alpha(l) = l, \forall l \notin \lbrace i_1, \dots, i_k \rbrace
+		\end{cases}$
+		\end{center}
+		Nesse caso, a notação para esse $k$-ciclo é $\alpha(i_1 \dots i_k)$ e o conjunto chamado de \textbf{suporte do ciclo} é $supp(\alpha)=\lbrace i_1, \dots, i_k \rbrace$.\\
+		Exemplificando, o 2-ciclo é uma transposição, onde apenas troca 2 elementos de lugar, ao passo que um 3-ciclo (134) para $n = 4$ é a permutação:
+		\begin{center}
+			$\begin{bmatrix}
+				1 & 2 & 3 & 4 \\ 3 & 2 & 4 & 1
+			\end{bmatrix}$
+		\end{center}
+		Note que dois ciclos disjuntos, isto é, seus respectivos suportes são disjuntos ($supp(\alpha) \cap supp(\beta) = \emptyset$), comutam, ou seja, $\alpha \beta = \beta \alpha$, ciclos com tal propriedade são chamados de \textbf{ciclos disjuntos}.\newpage
+		Concluindo, temos:
+		\begin{enumerate}
+			\item Existem ciclos disjuntos $\alpha_1, \dots, \alpha_r$ tais que $\alpha = \alpha_1 * \dots * \alpha_r$
+			\item Cada ciclo $\alpha_j$ é um produto de $m_j$ transposições.
+			\item $\alpha$ é um produto de $m_1 + \dots + m_r$ transposições.
+			\item $sign(\alpha) = (-1)^m$
+			\item $\alpha$ é permutação par se, e somente se $m$ é par.
+		\end{enumerate}
+
+\paragraph{Determinantes - Redução para dimensões menores\\}
+	Na aula anterior, foi visto para o exemplo $n = 3$ que o cálculo do determinante foi reduzido para um exemplo de $n = 2$, o objetivo dessa seção é mostrar como reduzir de uma dimensão $n \in \mathbb{N}$ para $n - 1$.
+	\begin{itemize}
+		\item Definição: \textbf{Minor}\\
+		Dada uma matriz $A \in M_n(\mathbb{K})$ (Matriz quadrada $n$ por $n$, com entradas no corpo $\mathbb{K}$), seu \textbf{minor} $A_{ij}$ ($1 \leq i,j \leq n$) é a matriz que obtém retirando a linha $i$ e coluna $j$ de $A$, claramente, reduzindo seu tamanho de $n$ para $n-1$. Exemplo:
+		\begin{center}
+		$A = \begin{bmatrix}		
+		a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33}
+		\end{bmatrix}$\\[10pt]
+		$A_{11} = \begin{bmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{bmatrix}$ 
+		$A_{21} = \begin{bmatrix} a_{12} & a_{13} \\ a_{32} & a_{33} \end{bmatrix}$ 
+		$A_{31} = \begin{bmatrix} a_{12} & a_{23} \\ a_{32} & a_{33} \end{bmatrix}$ 
+		$A_{12} = \begin{bmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{bmatrix}$
+		\end{center}
+		
+		\item Definição: \textbf{Cofator}\\
+		Definimos o cofator($i,j$) como sendo
+		\begin{center}
+			$d_{i,j} = (-1)^{i+j} det(A_{ij})	$
+		\end{center}
+		
+		\item Fórmula: \textbf{Determinante de uma matriz $A$ à partir da redução de sua dimensão}\\
+		Pelo resultado anterior, sendo $j_0$ uma coluna fixada temos:
+		\begin{center}
+			$det_{n+1}(A) = \sum\limits_{\sigma\in S_n} (-1)^{sign(\sigma)} a_{1\sigma(1)} a_{2\sigma(2)} \dots a_{n\sigma(n)}$\\
+			$= \sum\limits_{i = 1}^n (-1)^{i+j_0} a_{ij_0} det(A_{ij_0})$\\
+			$= \sum\limits_{i = n}^n a_{ij_0}d_{ij_0}$
+		\end{center}
+	\end{itemize}
+	
+\newpage
+\paragraph{Determinantes - $det(A) = 0$ quando uma linha (ou coluna) é repetida\\}
+	Tal propriedade provém do caso base $n = 2$, considere $A = \begin{bmatrix} a & b \\ a & b \end{bmatrix}$, calculando seu determinante, temos $ab - ab = det(A) = 0$, sabemos também que o determinante de qualquer matriz, por exemplo, para uma matriz $n=3$, pode ser expresso como somas/diferenças de determinantes de matrizes 2x2, igualando a zero para $n=3$, e assim por diante (uma prova formal é um bom exercício).
+	
+\paragraph{Determinantes - Outras Propriedades}
+	\begin{itemize}
+		\item $det(A) =  det(A^t)$
+		\item $cof(A)$ é a \textbf{matriz dos cofatores} de $A$, isto é, a matriz obtida substituindo cada entrada de $A$ por seu cofator.
+		\item $adj(A) = cof(A)^t$ é a \textbf{matriz adjunta} de $A$, isto é, a transposta da matriz dos cofatores de $A$.
+		\item $\frac{1}{det(A)} adj(A) A = Id$ ($Id$ é a matriz identidade), logo, temos:
+		\begin{center}
+			$A^{-1} = \frac{adj(A)}{det(A)}$
+		\end{center}
+	\end{itemize}
+	
+\newpage
+\section*{Aula 12 - Determinantes (parte 3)}
+\paragraph{Determinantes - Interpretação geométrica\\}
+	Seja $A \in M_3(\mathbb{R})$, no curso de Vetores e Geometria foi visto que esta pode representar 3 vetores $\in \mathbb{R}^3$, e seu determinante representa o produto misto entre esses vetores. Relembramos aqui que tal produto misto representa o volume do paralelepído formado por estes 3 vetores.\\
+	Definimos aqui o volume de um sólido no $\mathbb{K}^n$-espaço vetorial, o mesmo deve ser definido pelos vetores $v_1, \dots, v_n$:
+	\begin{center}
+		$P(v_1, \dots, v_n) = \left\lbrace \sum\limits^n_{i=1} x_i v_i: x_i (0 \leq x_i \leq 1), \forall 1 \leq i \leq n \right\rbrace$
+	\end{center}
+	O volume será definido pelo produto misto entre esses vetores, o qual pode ser expresso por:
+	\begin{center}
+		$volume(P(v_1,\dots,v_n)) = \vert [v_1,\dots,v_n] \vert = \vert det_n(A) \vert$,\\
+		onde $A$ é matriz cujas colunas são os vetores $v_1,\dots,v_n$
+	\end{center}
+
+\paragraph{Determinantes - Propriedades gerais}
+	\begin{enumerate}
+		\item $det(A)$ é invariante sob operações elementares (definidas na Aula 9) de linhas e colunas de A. Se houverem trocas de linhas, cada troca de linhas inverte o sinal do determinante, e, caso haja multiplicação de uma linha por escalar $\lambda$, o determinante de $A'$ será $det(A') = \lambda det(A)$.
+		\item $det_n(A) = \sum\limits^n_{i=1} a_{ij_0} d_{ij_0} = \sum\limits^n_{j=1} a_{i_0j} d_{i_0j}$, onde $d_{ij}$ são cofatores ($i,j$) de $A$.
+		\item $det(A) = det(A^t)$ e $det(Id) = 1$
+		\item O sistema linear $AX = B$ tem uma solução única se, e somente se $det(A) \neq 0$
+		\item $det(AB) =	det(A) \cdot det(B)$
+		\item $adj(A) \cdot A = A \cdot adj(A) = det(A) \cdot Id$
+		\item $A$ é invertível se, e somente se $det(A) \neq 0$, e, nesse caso: $A^{-1} = \frac{1}{det(A)} \cdot adj(A)$
+	\end{enumerate}
+
+\paragraph{Grupo Linear Geral e Grupo Linear Especial\\}
+	Definimos o $GL$ (General Linear) e $SL$ (Special Linear):
+	\begin{center}
+		$GL_n(\mathbb{K}) = \lbrace A \in M_n(\mathbb{K}): det(A) \neq 0 \rbrace$\\[5pt]
+		$SL_n(\mathbb{K}) = \lbrace A \in M_n(\mathbb{K}): det(A) = 1 \rbrace$
+	\end{center}
+	
+\newpage
+\section*{Aula 13}
+\paragraph*{Homomorfismo de grupos - Definição\\}
+	Dados dois grupos $(G_1,*)$ e $(G_2,\circ)$. Um homomorfismo de grupos é uma função:
+	\begin{center} $f: G_1 \rightarrow G_2$ \end{center}
+	que satisfaz as seguintes propriedades, sendo $e_1$ e $e_2$ os elementos neutros dos grupos:
+	\begin{center} $f(x * y) = f(x) \circ f(y)$ \\ $f(e_1) = e_2$ \end{center}
+	Isto é, a $f$ preserva as operações desses grupos, temos, de imediato, que:
+	\begin{center} $f(x^{-1}) = [f(x)]^{-1}$ \end{center}
+\end{document}
