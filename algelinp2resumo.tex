@@ -341,11 +341,335 @@ $ad-bc \neq 0$. Nota-se, portanto, que $ad - bc$ deve ser um \textbf{invariante}
 	
 \newpage
 \section*{Aula 13}
-\paragraph*{Homomorfismo de grupos - Definição\\}
+\paragraph{Homomorfismo de grupos - Definição\\}
 	Dados dois grupos $(G_1,*)$ e $(G_2,\circ)$. Um homomorfismo de grupos é uma função:
 	\begin{center} $f: G_1 \rightarrow G_2$ \end{center}
 	que satisfaz as seguintes propriedades, sendo $e_1$ e $e_2$ os elementos neutros dos grupos:
 	\begin{center} $f(x * y) = f(x) \circ f(y)$ \\ $f(e_1) = e_2$ \end{center}
 	Isto é, a $f$ preserva as operações desses grupos, temos, de imediato, que:
 	\begin{center} $f(x^{-1}) = [f(x)]^{-1}$ \end{center}
+
+\paragraph{Núcleo e Imagem - Definição\\}
+	Definimos aqui o núcleo e imagem de um homomorfismo de grupos $f: G_1 \rightarrow G_2$, considere $e_2$ como elemento neutro de $G_2$:
+	\begin{center} 
+		$Ker(f) = \lbrace x \in G_1: f(x) = e_2 \rbrace \subset G_1$\\[5pt]
+		$Im(f) = \lbrace f(x): x \in G_1 \rbrace \subset G_2$
+	\end{center}
+	São subgrupos e respectivamente chamados de núcleo ($Kernel$) e imagem ($Image$) de $f$.
+
+\paragraph{Homomorfismo de grupos - Exemplos}
+	\begin{enumerate}
+		\item Considere $sign: (S_n, \circ) \rightarrow (\lbrace 1,-1 \rbrace, \cdot)$.\\
+		Sabemos que $sign$ satisfaz, sendo $e$ a permutação $\in S_n$ neutra: \begin{center} $sign(a \circ b) = sign(a) \cdot sign(b)$ \\[5pt] $sign(e) = 1$ \end{center}
+		\item Considere $det_n: GL_n(\mathbb{K}) \rightarrow (\mathbb{K}^*,\cdot)$, é um homomorfismo pois:
+			\begin{center}
+				$det(Id) = \overrightarrow{1}$ \\
+				$det(AB) = det(A) \cdot det(B)$
+			\end{center}
+		Note que: $Ker(det_n) = SL_n(\mathbb{K})$
+	\end{enumerate}
+	
+\paragraph{Transformações Lineares e Funcionais Lineares - Definição\\}
+		Sabemos que um espaço vetorial é um grupo abeliano sobre o qual é definida uma segunda operação, denotada por \textbf{multiplicação por escalar}. Aqui estendemos a noção de homomorfismos de grupos para espaços vetoriais, nessa situação, claramente é preciso levar em conta a multiplicação por escalar. Considere $+$ como a operação num grupo abeliano.\\
+		Sejam $V_1$ e $V_2$ espaços vetoriais sobre um corpo $\mathbb{K}$. Uma \textbf{transformação linear} entre $V_1$ e $V_2$ é sempre denotada por:
+		\begin{center}
+			$T: V_1 \rightarrow V_2$
+		\end{center}
+	Tal que \begin{enumerate}
+	\item $ T(v + w) = T(v) + T(w)$
+	\item $T(\lambda v) = \lambda T(v)$
+	\end{enumerate}
+	Se $V_2 = \mathbb{K}$, então $T$ é um funcional linear e denotamos como $T: V_1 \rightarrow \mathbb{K}$.\\
+	Utilizamos o nome \textbf{linearidade} de $T$ para nos referir às propriedades citadas acima:
+	\begin{center}
+		$T \left( \sum\limits_{i=1}^m \lambda_i v_i \right) =  \sum\limits_{i=1}^m \lambda_i T(v_i) $
+	\end{center}
+
+\paragraph{Transformações Lineares e Funcionais Lineares - Núcleo e Imagem\\}
+	Analogamente ao que foi definido para grupos, temos para Transformações e Funcionais Lineares:
+	\begin{center}
+		$Ker(T) = \lbrace x \in V_1: T(x) = \overrightarrow{0} \rbrace \subset V_1$ \\[5pt]
+		$Im(T) = \lbrace T(x) \in V_2: x \in V_1 \rbrace \subset V_2$
+	\end{center}
+	Denotando $\overrightarrow{0}$ como o vetor nulo de ambos os espaços vetoriais, temos:
+	\begin{center}
+		$T(\overrightarrow{0}) = \overrightarrow{0}$
+	\end{center}
+	Note que $Ker(T)$ e $Im(T)$ são subgrupos e subespaços vetoriais.
+
+\paragraph{Nulidade e Posto - Definição\\}
+	Seja $T: V_1 \rightarrow V_2$ uma transformação linear entre $\mathbb{K}$-espaços vetoriais, definimos:
+	\begin{center}
+		a. \textbf{Nulidade de T} $= N(T) = dim_{\mathbb{K}}(Ker(T))$ \\
+		b. \textbf{Posto de T} $= P(T) = dim_{\mathbb{K}}(Im(T))$
+	\end{center}
+	Seja $T: V_1 \rightarrow V_2$ uma transformação linear entre $\mathbb{K}$-espaços vetoriais.
+	\begin{itemize}
+		\item Se $T$ é uma função injetora, $T$ é um \textbf{monomorfismo}.
+		\item Se $T$ é uma função sobrejetora, $T$ é um \textbf{epimorfismo}.
+		\item Se $T$ é uma bijeção, $T$ é um \textbf{isomorfismo}.
+		\item Se $V_1$ = $V_2$, $T$ é um \textbf{operador linear}, em vez de transformação linear.
+	\end{itemize}
+
+\newpage
+\paragraph{Injetividade de Transformações Lineares\\}
+	Seja $T: V_1 \rightarrow V_2$ uma transformação entre $\mathbb{K}$-espaços lineares.
+	\begin{enumerate}
+		\item $T$ é um monomorfismo se, e somente se $Ker(T) = \lbrace \overrightarrow{0} \rbrace$
+		\item[•] Prova do item 1:
+			\begin{center}
+				$T(x) = T(y) \leftrightarrow T(x-y) = \overrightarrow{0} \leftrightarrow x - y \in Ker(T)$
+			\end{center}
+			Portanto, temos que $Ker(T) = \lbrace \overrightarrow{0} \rbrace$ se, e somente se $T(x) = T(y) \rightarrow x = y$
+		\item Se $T$ é um isomorfismo linear, então $T^{-1}: V_2 \rightarrow V_1$ existe e é linear, e $dim_{\mathbb{K}}(V_1) = dim_{\mathbb{K}}(V_2)$
+		\item[•] Prova do item 2:\\
+			Sendo T uma bijeção, a existência da inversa é trivial, portanto, provaremos apenas sua linearidade.\\
+			Seja $z = T(x)$, $w = T(y)$ e $\lambda \in \mathbb{K}$, logo, $T(x) + T(y) = z + w$, $T(\lambda x) = \lambda T(x)$, tem-se que:
+			\begin{center}		
+				$T^{-1}(z) = x$ e $T^{-1}(w) = y$ \\[5pt]
+				$T^{-1}(z + w) = x + y = T^{-1}(z) + T^{-1}(w)$ \\[5pt]
+				$T^{-1}(\lambda z) = \lambda T(z)$
+			\end{center}
+			O que prova a linearidade de $T$. Note que $T^{-1}$ é um isomorfismo linear.\\[5pt]
+			Considere $n = dim_\mathbb{K}(V_1)$ e $\beta = \lbrace v_1, \dots, v_n \rbrace$ uma base de $V_1$. Como $T$ é sobrejetora, temos que $z \in V_2 \rightarrow \exists x \in V_1 (T(x) = z)$. Dado que $\beta$ é uma base de $V_1$, e considerando $\lambda_i \in \mathbb{K}$ podemos escrever $x$ como $x = \sum\limits^n_{i=1}\lambda_iv_i$, pela linearidade de $T$, temos $T(x) = \sum\limits^n_{i=1} T(\lambda_i v_i)
+= \sum\limits^n_{i=1} \lambda_i T(v_i)$. Como não houve perda de generalidade na suposição de $z$, podemos escrever qualquer $z \in V_2$ como $T(\beta) = \lbrace T(v_1), \dots, T(v_n) \rbrace$, logo, temos que $T(\beta)$ é conjunto gerador de $V_2$, e, portanto, deste podemos extrair uma base, o que nos dá $dim_\mathbb{K}(V_1) = n = \vert \beta \vert = \vert T(\beta) \vert \geq dim_\mathbb{K}(V_2)$, no entanto, como $T^{-1}$ é um isomorfismo linear, sabemos que $dim_\mathbb{K}(V_2) \geq dim_\mathbb{K}(V_1)$, resultando em  $dim_\mathbb{K}(V_2) = dim_\mathbb{K}(V_1)$.
+	\end{enumerate}
+	
+\paragraph{Transformações Lineares - Exemplos}
+\begin{enumerate}
+	\item Considere a função traço, $Tr: (M_n(\mathbb{K}),+) \rightarrow (\mathbb{K}, +)$, tal função recebe uma matriz e retorna a soma de todos os valores da sua diagonal principal $a_{ii}, i \in [1,n]$. Percebe-se que $Tr$ é um homomorfismo de grupos abelianos, e também uma transformação linear, pois: $Tr(\lambda A) = \lambda Tr(A)$, com $\lambda \in \mathbb{K}$, segue $Tr$ é um funcional linear (transformação do espaço vetorial ao corpo em qual o espaço está definido sobre).
+	
+	\item Seja $V = C(\mathbb{R},\mathbb{R})$ o espaço vetorial das funções contínuas de $\mathbb{R}$ em $\mathbb{R}$, sobre esse espaço, definimos a seguinte função:
+	\begin{center}\framebox{
+		$T(f) = \int\limits^1_0 f(x)dx$
+	}\end{center}
+	Dos cursos anteriores, sabemos que:
+	\begin{center}
+		$T(f + \lambda g) = \int\limits^1_0 \left[ f(x) + \lambda g(x)\right] dx = \int\limits^1_0 f(x)dx + \lambda \int\limits^1_0 g(x)dx$\\
+		$= T(f) + \lambda T(g)$
+	\end{center}
+	Note que T é um \textbf{funcional} linear sobre $V$. $Ker(T)$ são todas as função cuja integral de 0 a 1 é igual a 0. Como $f(x) = \frac{1}{2} - x$.
+	
+	\item Seja $V = C^{\infty}(\mathbb{R},\mathbb{R})$ e $T: V \rightarrow V$ e definimos a função $T$ como
+		\begin{center}
+			$T(f) = f'$
+		\end{center}
+		Lembramos que:
+		\begin{center}
+			$T(f + \lambda g) = (f + \lambda g)' = f' + \lambda g' = T(f) + \lambda T(g)$
+		\end{center}
+		Verificado que $T$ é um homomorfismo de grupos abelianos (pois as operaçõe se mantém) sobre os quais a multiplicação por escalar vale, assim como para a função $T$, temos que, sabendo que o domínio e o contradomínio da função são os mesmos, $T$ é um operador linear.\\
+		Note também que $Ker(T)$ é o conjunto das funções constantes, implicando $f' = 0$.
+		
+	\item Seja $T: \mathbb{R}^3 \rightarrow \mathbb{R}$, definida por $T(x,y,z) = x$ (a projeção na primeira coordenada).\\
+	Sendo $u = (x, y, z)$ e $v = (a, b, c)$, ambos $\in \mathbb{R}^3$ e $\lambda \in \mathbb{R}$, temos
+	\begin{center}
+		$T(u + \lambda v) = T(x + \lambda a, y + \lambda b, z + \lambda c) = x + \lambda a = T(u) + \lambda T(v)$
+	\end{center}
+\end{enumerate}
+
+\newpage
+\section*{Aula 14 - Transformações Lineares (Parte 2)}
+\paragraph{Teorema - Imagem/Núcleo em Posto/Nulidade\\}
+	Seja $T: V_1 \rightarrow V_2$ uma transformação linear entre $\mathbb{K}$-espaços vetoriais de dimensão finita, então, temos
+		\begin{enumerate}
+		\item $dim(V_1) = dim(Ker(T)) + dim(Im(T))$
+		\item $dim(V_1) = N(T) + P(T)$	
+		\end{enumerate}
+%%	Prova:\\
+%%	Considere $T: V_1 \rightarrow V_2$ uma transformação entre $\mathbb{K}$-espaços vetoriais e $W = Ker(T)$. Como $W$ é subespaço de $V_1$, podemos construir o espaço vetorial quociente $\frac{V_1}{W}$, e sabemos que vale
+%%	\begin{center}
+%%		$dim(V_1) = dim(W) + dim(\frac{V_1}{W})$
+%%	\end{center}
+%%	Definimos uma segunda função $\widehat{T}$
+%%	\begin{center}
+%%		$\widehat{T}: \frac{V_1}{W} \rightarrow Im(T)$\\[5pt]
+%%		$\widehat{T}([v]) = T(v)$
+%%	\end{center}
+%%	A função é bem definida, pois note que, se $[v] = [x]$, temos que $v \sim x$, portanto $v - x \in W = Ker(T)$.
+%%	Logo, temos $\overrightarrow{0} = T(v - x) = T(v) - T(x)$ (pois $v - x \in Ker(T)$). Obtemos que $T(v) = T(x)$, logo, $%%\widehat{T}([v]) = T(v) = T(x) = \widehat{T}(x)$, logo, $\widehat{T}$ independe do representante da classe.\\[10pt]
+%%	Por $[x] + [y] = [x + y]$ e $\lambda [x] = [\lambda x]$, temos que $\widehat{T}$ é uma transformação linear.		
+	
+\paragraph{Transformação Linear - Propriedade Fundamental\\}
+	Seja $T: V \rightarrow W$ uma transformação linear entre $\mathbb{K}$-espaços vetoriais de dimensão $n$ e $m$, respectivamente. Seja $\alpha$ uma base $\lbrace v_1, \dots, v_n \rbrace$ de $V$.\\[5pt]
+	Logo, dado $v \in V$ existem $x_1, \dots, x_n \in \mathbb{K}$ tais que
+	\begin{center}
+		$v = \sum\limits^n_{i = 1}x_i v_i$,\\[5pt] logo,\\[5pt]
+		$T(v) = \sum\limits^n_{i=1} x_i T(v_i)$
+	\end{center}
+	Note que $(x_1, \dots, x_n) = [v]_\alpha$, logo, sabendo apenas $[v]_\alpha$ e $T(v_1), \dots, T(v_n)$, podemos saber a imagem de $v$ por $T$. Lembre-se que essa propriedade vale apenas para transformações lineares, pois depende de suas propriedades, como a linearidade.\\[10pt]
+	\textbf{Exemplo}
+	\begin{itemize}
+	\item Seja $\beta = \lbrace (0,1), (1,0) \rbrace$ uma base de $\mathbb{R}^2$. Suponha que $f: \mathbb{R}^2 \rightarrow \mathbb{R}$ é um funcional linear tal que $f(1,0) = 2$ e $f(0,1) = 1$. Então tem-se que:
+		\begin{center}
+			$f(x,y) = f(x'(1,0) + y'(0,1))$, porque $(x,y) = x'(1,0) + y'(0,1)$ e $(x',y') = [(x,y)]_\beta$ \\[10pt]
+			$f(x'(1,0) + y'(0,1)) = f(x'(1,0)) + f(y'(0,1)) = x'f(1,0) + y'(0,1) = 2x' + y'$ 
+		\end{center}	 
+	\end{itemize}
+	Estendemos agora essa propriedade, seja $T: V \rightarrow W$ uma transformação linear entre $\mathbb{K}$-espaços vetoriais de dimensão $n$ e $m$, respectivamente.\\
+	Seja $\alpha = \lbrace v_1, \dots, v_n \rbrace$ uma base de $V$ e $\beta = \lbrace w_1, \dots, w_n \rbrace$ uma base de $W$.\\
+	Então, dado $v \in V$, existem escalares $x_1, \dots, x_n \in \mathbb{K}$ tais que
+	\begin{center}
+		$v = \sum\limits_{i=1}^n x_i v_i$, em outras palavras,\\[5pt]
+		$[v]_\alpha = (x_1, \dots, x_n)$
+	\end{center}
+	Temos, então:
+	\begin{center}
+		$T(v) = T \left( \sum\limits^n_{i=1} x_i v_i \right) = \sum\limits^n_{i=1}x_i T(v_i)$
+	\end{center}
+	E, para cada $i$, temos que $T(v_i) \in W$, e, portanto:
+	\begin{center}
+		$T(v_i) = \sum\limits^m_{j=1} a_{ij} w_j$, ou seja,\\[5pt]
+		$[T(v_i)]_\beta  = (a_{i1}, \dots, a_{im})$
+	\end{center}
+	Podemos dizer, então:
+	\begin{center}
+		$T(v) = T \left( \sum\limits^n_{i=1} x_i v_i \right) = \sum\limits^n_{i=1}x_i T(v_i) = \sum\limits^n_{i=1}x_i \sum\limits^m_{j=1} a_{ij} w_j = \sum\limits^m_{j=1} \left( \sum\limits^n_{i=1}x_i a_{ij} \right) w_j$, logo,\\[5pt]
+		$[T(v)]_\beta = \left( \sum\limits^n_{i=1} a_{i1} x_i, \dots, \sum\limits^n_{i=1} a_{im} x_i \right)$
+	\end{center}
+	De forma matricial, temos:
+	\begin{center}
+		$ [T(v)]_\beta =
+		\begin{pmatrix}
+		a_{11} & \dots & a_{1n} \\
+		\vdots & \ddots & \vdots \\
+		a_{m1} & \dots & a_{mn} 
+		\end{pmatrix}
+		[v]_\alpha$
+	\end{center}
+	Note que as colunas da matriz são representam, cada uma, $[T(v_i)]_\beta = (a_{i1}, \dots a_{i_m})$. Ela em si é uma matriz $m \times n \in M_{mn}(\mathbb{K})$ e a denotaremos como $[T]^\beta_\alpha$.\\
+	Dessa forma, podemos escrever a relação
+	\begin{center}
+		$[T(v)]_\beta = [T]^\beta_\alpha \cdot [v]_\alpha$
+	\end{center}
+	Esta nos diz como obter as coordenadas de $T(v)$ sabendo apenas $[T]^\beta_\alpha$ e $[v]_\alpha$.\\[10pt]
+	Podemos, então, interpretar $T$ como
+	\begin{center}
+		$T: \mathbb{K}^n \rightarrow \mathbb{K}^m$
+	\end{center}
+	e definir $T(X)$ como
+	\begin{center}
+		$T(X) = AX$ $\vert$ $A = [T]_\alpha^\beta$, $X = [v]_\alpha$
+	\end{center}
+	No caso em que $v \in Ker(T)$, temos
+	\begin{center}
+		$T(v) \in Ker(T) \Leftrightarrow T(v) = \overrightarrow{0} \Leftrightarrow [T(v)]_\beta = (0, \dots, 0)$	
+	\end{center}
+	Ou seja, para encontrar o núcleo de uma transformação linear entre espaços vetoriais de dimensão finita, basta resolvermos um sistema linear homogêneo.\\[10pt]
+	Note que
+	\begin{center}
+		$Im(T) = Span_\mathbb{K} \left[ T(v_1), \dots, T(v_n) \right]$
+	\end{center}
+	Obtendo, assim, uma base da imagem $Im(T)$ dentro do conjunto $\left\lbrace T(v_1), \dots, T(v_n) \right\rbrace$.\\[10pt]
+	\textbf{Exemplo\\}
+	Suponha $\alpha = \lbrace x_1, \dots, x_n \rbrace$, $\beta = \lbrace a_1, \dots, a_n \rbrace$
+	\begin{center}
+		$v = x_1 v_1 + x_2 v_2$, e, logo, $[v]_\alpha = (x_1, x_2)$
+	\end{center}
+	A linearidade de $T$ implica em
+	\begin{center}
+		$T(v) = x_1 T(v_1) + x_2 T(v_2)$
+	\end{center}
+	Sabemos também que
+	\begin{center}
+		$T(v_1) = a_{11} w_1 + a_{21} w_2 + a_{31} w_3 $, logo $[T(v_1)]_\beta = (a_{11}, a_{21}, a_{31})$ \\
+		$T(v_2) = a_{12} w_1 + a_{22} w_2 + a_{32} w_3 $, logo $[T(v_2)]_\beta = (a_{12}, a_{22}, a_{32})$
+	\end{center}
+	Obtemos
+	\begin{center}
+		$T(v) = T(x_1 v_1 + x_2 v_2) = x_1 T(v_1) + x_2 T(v_2)$\\
+		$ = x_1 (a_{11} w_1 + a_{21} w_2 + a_{31} w_3) + x_2 (a_{12} w_1 + a_{22} w_2 + a_{32} w_3)$\\
+		$ = w_1(x_1 a_{11} + x_2 a_{12}) + w_2(x_1 a_{21} + x_2 a_{22}) + w_3(x_1 a_{31} + x_2 a_{32}) $
+	\end{center}
+	Resultando em
+	\begin{center}
+		$[T(v)]_\beta = (x_1 a_{11} + x_2 a_{12}, x_1 a_{21} + x_2 a_{22}, x_1 a_{31} + x_2 a_{32}) = $\\[5pt]
+		$\begin{pmatrix}
+			a_{11} & a_{12} \\ a_{21} & a_{22} \\ a_{31} & a_{32}
+		\end{pmatrix}
+		\cdot
+		\begin{pmatrix}
+			x_1 \\ x_2
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			a_{11} & a_{12} \\ a_{21} & a_{22} \\ a_{31} & a_{32}
+		\end{pmatrix}
+		\cdot
+		[v]_\alpha
+		$\\[5pt]
+		Com $[T]_\alpha^\beta = \begin{pmatrix}
+			a_{11} & a_{12} \\ a_{21} & a_{22} \\ a_{31} & a_{32}
+		\end{pmatrix}$
+	\end{center}
+	Note que as colunas de $[T]^\beta_\alpha$ são as coordenadas de $T(v_1)$ e $T(v_2)$.\\
+	Podemos interpretar $T$ como
+	\begin{center}
+		$T: \mathbb{R}^2 \rightarrow \mathbb{R}^3$\\[5pt]
+		$T(x,y) = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \\ a_{31} & a_{32} \end{pmatrix} \cdot \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$
+	\end{center}
+	Temos, em particular
+	\begin{center}
+		$v \in Ker(T) \Leftrightarrow T(v) = \overrightarrow{0} \Leftrightarrow [T(v)]_\beta = (0, 0, 0)$\\[5pt]
+		$[T]^\beta_\alpha \cdot \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$
+	\end{center}
+	E, também
+	\begin{center}
+		$w \in Im(T) \Leftrightarrow \exists v \in \mathbb{R}^2( w = T(v) ) \Leftrightarrow \exists v \in V ([T(v)]_\beta = [w]_\beta)$\\ $\Leftrightarrow \exists v \in \mathbb{R}^2 ((y_1, y_2, y_3) = [w]_\beta = [T(v)]_\beta = [T]^\beta_\alpha [v]_\alpha$ \\[5pt]
+		$[T]^\beta_\alpha \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} a_1 \\ a_2 \\ a_3 \end{pmatrix}$
+	\end{center}
+	Note que $ \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$ é a solução do sistema linear.
+	
+\paragraph{Matriz associada a uma transformação linear\\}
+	Sejam $V$ e $W$ $\mathbb{K}$-espaços vetoriais de dimensão $n$ e $m$, respectivamente, com $\alpha = \lbrace v_1, \dots, v_n \rbrace$ base de $V$ e $\beta$ uma base de W e $T: V \rightarrow W$ uma transformação linear.\\
+	Logo, existe uma matriz $[T]^\beta_\alpha \in M_{mn}(\mathbb{K})$, tal que
+	\begin{center}
+		$\forall v \in V, [T(v)]_\beta = [T]^\beta_\alpha \cdot [v]_\alpha$
+	\end{center}
+	Sendo as colunas de $[T]^\beta_\alpha$ os escalares $[T(v_i)]_\beta$, com $1 \leq i \leq n$.\\[10pt]
+	Tem-se que
+	\begin{center}
+		$v \in Ker(T) \Leftrightarrow [v]_\alpha$ é solução do sistema linear homogêneo $[T]^\beta_\alpha \cdot [v]_\alpha = \overrightarrow{0}$
+	\end{center}
+	Além disso
+	\begin{center}
+		$Im(T) = Span_\mathbb{K}\left[ T(v_1), \dots, T(v_n)\right]$
+	\end{center}
+	e \begin{center}
+		$w \in Im(T) \subset W \Leftrightarrow \exists v \in V$\\
+		$\Leftrightarrow [v]_\alpha$ é solução do sistema linear homogêneo $[T]^\beta_\alpha \cdot X = [w]_\beta$
+	\end{center}
+	\textbf{Exemplo\\}
+	Sejam $T: P_2(\mathbb{R}) \rightarrow \mathbb{R}^2$ dada por
+	\begin{center}
+		$T(p(x)) = \left( \int\limits_{-1}^1 \right)$
+	\end{center}
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

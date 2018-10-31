@@ -1,0 +1,176 @@
+\documentclass[12pt]{article}
+\usepackage[right=2cm, left=2cm, top=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{framed}
+\usepackage[utf8]{inputenc}
+\author{BCC IME-USP 2018}
+\title{Álgebra Linear - Exercícios P2}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+	\item
+		Escalone as matrizes
+		\begin{center}
+			$\begin{pmatrix}
+			3 & 6 & 2 \\ 1 & 2 & 7
+			\end{pmatrix}$
+			e
+			$\begin{pmatrix}
+			1 & 3 & 3 & 2 & 1 \\ 2 & 6 & 9 & 5 & 5 \\ -1 & -3 & 3 & 0 & 5
+			\end{pmatrix}$
+		\end{center}
+	\textbf{Solução}
+		\begin{center}
+		$\begin{pmatrix}
+			3 & 6 & 2 \\ 1 & 2 & 7
+		\end{pmatrix}
+		\begin{matrix}
+			L_1 \leftrightarrow L_1 - 2L_2
+		\end{matrix}
+		\begin{pmatrix}
+			1 & 2 & -12 \\ 1 & 2 & 7
+		\end{pmatrix}$\\[10pt]
+		$\begin{pmatrix}
+			1 & 2 & -12 \\ 1 & 2 & 7
+		\end{pmatrix}
+		\begin{matrix}
+			L_2 \leftrightarrow L_2 - L_1
+		\end{matrix}		
+		\begin{pmatrix}
+			1 & 2 & -12 \\ 0 & 0 & 19
+		\end{pmatrix}		
+		$\\[10pt]
+		$\begin{pmatrix}
+			1 & 2 & -12 \\ 0 & 0 & 19
+		\end{pmatrix}
+		\begin{matrix}
+			L_2 \leftrightarrow L_2 - \frac{1}{19} L_2
+		\end{matrix}
+		\begin{pmatrix}
+			1 & 2 & -12 \\ 0 & 0 & 1
+		\end{pmatrix}			
+		$		
+		\end{center}
+		e
+		\begin{center}
+			$\begin{pmatrix}
+				1 & 3 & 3 & 2 & 1 \\ 2 & 6 & 9 & 5 & 5 \\ -1 & -3 & 3 & 0 & 5
+			\end{pmatrix}
+			\begin{matrix}
+				L_2 \leftrightarrow L_2 - 2L_1 \\
+				L_3 \leftrightarrow L_3 + L_1
+			\end{matrix}	
+			\begin{pmatrix}
+				1 & 3 & 3 & 2 & 1 \\ 0 & 0 & 3 & 1 & 3 \\ 0 & 0 & 6 & 2 & 6
+			\end{pmatrix}				
+			$\\[10pt]
+			$\begin{pmatrix}
+				1 & 3 & 3 & 2 & 1 \\ 0 & 0 & 3 & 1 & 3 \\ 0 & 0 & 6 & 2 & 6
+			\end{pmatrix}
+			\begin{matrix}
+				L_3 \leftrightarrow L_3 - 2L_2\\
+				L_2 \leftrightarrow \frac{1}{3} L_2
+			\end{matrix}
+			\begin{pmatrix}
+				1 & 3 & 3 & 2 & 1 \\ 0 & 0 & 1 & \frac{1}{3} & 1 \\ 0 & 0 & 0 & 0 & 0
+			\end{pmatrix}
+			$
+		\end{center}
+		
+	\item Resolva o sistema:\\[10pt]
+		$\begin{cases}
+			x_1 + 3x_2 + 3x_3 + 2x_4 = 1 \\
+			2x_1 + 6x_2 + 9x_3 + 5x_4 = 5 \\
+			-x_1 - 3x_2 + x_3 = 5 		
+		\end{cases}$\newpage
+		\textbf{Solução\\[10pt]}
+		Definimos $A = \begin{pmatrix}
+		1 & 3 & 3 & 2 & 1\\ 2 & 6 & 9 & 5 & 5 \\  -1 & -3 & 1 & 0 & 5
+		\end{pmatrix}$ e escalonamos:
+		\begin{center}
+			$A' =
+			\begin{pmatrix}
+				1 & 3 & 3 & 2 & 1\\ 0 & 0 & 1 & 1 & 3 \\  0 & 0 & 0 & 1 & 3
+			\end{pmatrix}$
+		\end{center}
+		Resultando em:
+		\begin{center}
+			$\begin{cases}
+			x_1 + 3x_2 + 3x_3 + 2x_4 = 1\\
+			x_3 + x_4 = 3\\
+			x_4 = 3
+			\end{cases}$
+		\end{center}
+		Facilmente, temos:
+		\begin{center}
+			$\begin{cases}
+			x_4 = 3\\
+			x_3 = 0 \\
+			x_1 + 3x_2 = -5 \leftrightarrow x_1 = - 3x_2 - 5\\
+			\end{cases}$
+		\end{center}
+		E então, o conjunto de soluções é:
+		\begin{center}
+			$
+			(x_1,x_2,x_3,x_4) =  (-3x_2 - 5, x_2, 0, 3) = x_2(-3,1,0,0) + (-5,0,0,3)
+			$
+		\end{center}
+		
+	\item Encontre os valores de $t$ para que o sistema abaixo tenha mais do que uma solução. Faça isso de duas formas, via escalonamento e determinante.
+	\begin{center}
+		$\begin{cases}
+			6x_1 - x_2 + x_3 = 0 \\
+			tx_1 + x_3 = 0 \\
+			x_2 + tx_3
+		\end{cases}$
+	\end{center}
+	\textbf{Solução - Escalonamento\\[10pt]}
+	Definimos $A = \begin{pmatrix} 6 & -1 & 1 \\ t & 0 & 1 \\ 0 & 1 & t \end{pmatrix}$, e então escalonamos:
+	\begin{center}
+		$\begin{pmatrix} 6 & -1 & 1 \\ t & 0 & 1 \\ 0 & 1 & t \end{pmatrix}$
+		$\begin{matrix} L_1 \leftrightarrow L_1 + L_3	 \end{matrix}$
+		$\begin{pmatrix} 6 & 0 & 1 + t \\ t & 0 & 1 \\ 0 & 1 & t \end{pmatrix}$
+	\end{center}
+	Se $t = 0$, temos:
+	\begin{center}
+		$\begin{pmatrix} 6 & 0 & 1 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}$
+		$\begin{matrix} L_2 \leftrightarrow L_3 \\ L_3 \leftrightarrow L_2 \end{matrix}$
+		$\begin{pmatrix} 6 & 0 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$\\[10pt]
+		logo,\\[10pt]
+		$\begin{cases}6x_1 + x_3 = 0\\x_2 = 0\\x_3 = 0\end{cases} \rightarrow S = (0, 0, 0)$, quando $t = 0$. 
+	\end{center}	
+	Logo $t \neq 0$, pois queremos mais de uma solução.\\[5pt]
+	Se $t \neq 0$:
+	\begin{center}
+		$\begin{pmatrix} 6 & 0 & 1 + t \\ t & 0 & 1 \\ 0 & 1 & t \end{pmatrix}$
+		$\begin{matrix} L_1 \leftrightarrow L_1 + L_3	 \end{matrix}$
+		$\begin{pmatrix} 6 & 0 & 1 + t \\ t & 0 & 1 \\ 0 & 1 & t \end{pmatrix}$\\[10pt]
+		$\begin{pmatrix} 6 & 0 & 1 + t \\ t & 0 & 1 \\ 0 & 1 & t \end{pmatrix}$
+		$\begin{matrix} L_2 \leftrightarrow \frac{1}{t}L_2 \end{matrix}$
+		$\begin{pmatrix} 6 & 0 & 1 + t \\ 1 & 0 & 1/t \\ 0 & 1 & t \end{pmatrix}$\\[10pt]
+		$\begin{pmatrix} 6 & 0 & 1 + t \\ 1 & 0 & 1/t \\ 0 & 1 & t \end{pmatrix}$
+		$\begin{matrix} L_1 \leftrightarrow L_1 - 6L_2 \end{matrix}$
+		$\begin{pmatrix} 0 & 0 & 1 + t - 6/t \\ 1 & 0 & 1/t \\ 0 & 1 & t \end{pmatrix}$\\[10pt]
+		$\begin{pmatrix} 0 & 0 & 1 + t - 6/t \\ 1 & 0 & 1/t \\ 0 & 1 & t \end{pmatrix}$
+		$\begin{matrix} L_1 \leftrightarrow L_1 - 6L_2 \end{matrix}$
+		$\begin{pmatrix} 1 & 0 & 1/t \\ 0 & 1 & t \\ 0 & 0 & 1 + t - 6/t \end{pmatrix}$\\[10pt]
+	\end{center}
+	Para que o sistema tenha infinitas solução, é preciso que exista uma linha nula. No entanto, a única linha possivelmente nula é a terceira, temos, então:
+	\begin{center}
+		$1 + t - \frac{6}{t} = 0 \Leftrightarrow t + t^2 - 6 = 0 = (t + 3)(t - 2)= 0$\\[5pt]
+		$t \in \lbrace -3, 2 \rbrace$
+	\end{center}
+
+	\textbf{Solução - Determinante\\[10pt]}
+	Definimos $A = \begin{pmatrix} 6 & -1 & 1 \\ t & 0 & 1 \\ 0 & 1 & t \end{pmatrix}$, e calculamos seu determinante, que deve ser igual 0, para que o sistema tenha mais de uma solução:
+	\begin{center}
+		$det(A) = t - 6 + t^2 = t^2 + t -6 = (t + 3)(t-2)$ \\
+		$det(A) = (t + 3)(t - 2) = 0 \Leftrightarrow t \in \lbrace -3, 2 \rbrace$
+	\end{center}
+	
+	\newpage	
+	\item oi
+\end{enumerate}
+\end{document}
