@@ -640,10 +640,54 @@ $ad-bc \neq 0$. Nota-se, portanto, que $ad - bc$ deve ser um \textbf{invariante}
 		$\Leftrightarrow [v]_\alpha$ é solução do sistema linear homogêneo $[T]^\beta_\alpha \cdot X = [w]_\beta$
 	\end{center}
 	\textbf{Exemplo\\}
-	Sejam $T: P_2(\mathbb{R}) \rightarrow \mathbb{R}^2$ dada por
+	Sejam $T: P_3(\mathbb{R}) \rightarrow \mathbb{R}^2$ dada por
 	\begin{center}
-		$T(p(x)) = \left( \int\limits_{-1}^1 \right)$
+		$T(p(x)) = \left( \int\limits_{-1}^1 p(x)dx, p(-1) + p(1) \right)$
 	\end{center}
+	$\alpha$ e $\beta$ bases de $P_3(\mathbb{R})$ e $\mathbb{R}^2$, respectivamente.
+	\begin{enumerate}
+	\item Mostre que $T$ é linear.
+	\item Encontre a matriz $[T]^\beta_\alpha$.
+	\item Determine $Im(T)$ e $Ker(T)$.
+	\item Encontre um gerador para $Ker(T)$.
+	\end{enumerate}
+	\textbf{1. Mostre que T é linear\\}
+	Para provar a linearidade de $T$, queremos provar que, sendo $v, w \in P_3(\mathbb{R})$, temos
+	\begin{center}
+		$T(v + \lambda w) = T(v) + T(\lambda w) = T(v) + \lambda T(w)$
+	\end{center}
+	Certo, sabemos o que provar, então, do que aprendemos no curso de Cálculo I e conhecimento básico de polinômios e funções, temos
+	\begin{center}
+		$T(v + \lambda w) = \left( \int\limits^1_{-1}v + \lambda w dx , (v + \lambda w)(-1) + (v + \lambda w)(1) \right)$\\
+		$ = \left( \int\limits^1_{-1} \lambda w dx , (\lambda w)(-1) + (\lambda w)(1) \right) + \left( \int\limits^1_{-1} v dx , (v)(-1) + (v)(1) \right) = T(v) + T(\lambda w) $\\
+		$ = \left( \lambda \int\limits^1_{-1} w dx, \lambda(w)(-1) + \lambda(w)(1) \right) + \left( \int\limits^1_{-1} v dx, (v)(-1) + (v)(1) \right)$ = $T(v) + \lambda T(w)$. $\square$
+	\end{center}
+	\textbf{2. Encontre a matriz $[T]^\beta_\alpha$\\}
+	Queremos encontra a matriz que, dado um $v \in 	P_3(\mathbb{R})$, $[v]_\alpha$ é solução do sistema $[T]^\beta_\alpha \cdot X = [T(v)]_\beta$.\\
+	Sabemos que $[T]^\beta_\alpha$ é a matriz associada à transformação linear $T$ (podemos usar o termo, pois provamos sua linearidade acima.\\[5pt]
+	Sejam, então, $\alpha = \lbrace p_1 = 1, p_2 = x, p_3 = x^2 \rbrace$ e $\beta = \lbrace e_1 = (1,0), e_2 = (0,1)\rbrace$, encontramos, então a imagem de cada vetor de $\alpha$:
+	\begin{center}
+		$T(p_1) = \left( \int\limits^1_{-1} 1, p_1(-1) + p_1(1) \right) = (2,2) \rightarrow [T(p_1)]_\beta = (2,2)$\\
+		$T(p_2) = \left( \int\limits^1_{-1} x, p_2(-1) + p_2(1) \right) = (0,0) \rightarrow [T(p_2)]_\beta = (0,0)$\\
+		$T(p_3) = \left( \int\limits^1_{-1} x^2, p_3(-1) + p_3(1) \right) = (\frac{2}{3}, 2) \rightarrow [T(p_2)]_\beta = (\frac{2}{3},2)$\\
+	\end{center}
+	Montamos, então a matriz $[T]^\beta_\alpha$
+	\begin{center}
+		$[T]^\beta_\alpha = \begin{pmatrix} 2 & 0 & 2/3 \\ 2 & 0 & 2 \end{pmatrix}$. $\square$
+	\end{center}
+	\textbf{3. Determine $Im(T)$ e $Ker(T)$\\}
+	Note que $\lbrace p_1, p_3 \rbrace = \lbrace (2,2), (\frac{2}{3}, 2) \rbrace$ está contido em $\alpha$ é um conjunto linearmente independente, omitimos $(0,0)$ pois este sempre é nulo.\\
+	Perceba que o conjunto dado é uma base de $\mathbb{R}^2$, facilmente, percebemos que 
+	\begin{center} $Im(T) = \mathbb{R}^2 = Span_{\mathbb{R}}[(2,2), (\frac{2}{3}, 2)]$.\end{center}
+	Para encontrar $Ker(T)$, fazemos $p(x) = a_0 + a_1 x + a_2 x^2 \in Ker(T) \Leftrightarrow$\\
+	\begin{center}
+	$\begin{pmatrix} 2 & 0 & 2/3 \\ 2 & 0 & 2 \end{pmatrix} \cdot \begin{pmatrix} a_0 \\ a_1 \\ a_2	 \end{pmatrix} = \overrightarrow{0}$ \\[5pt]
+	$\Leftrightarrow$ \\[5pt]
+	$\begin{cases} 2a_0 + \frac{2a_2}{3} = 0 \\ 2a_2 + 2a_2 = 0 \end{cases}$\\[5pt]
+	$\Leftrightarrow$\\[5pt]
+	$a_0 = a_2 = 0$
+	\end{center}
+	Então temos $p(x) = a_1 p_2(x)$, resultando em $Ker(T) = Span[p_2(x)]$, assim, simultaneamente encontramos $Ker(T)$ e um gerador para ele, concluindo o exercício \textbf{4. Encontre um gerador para $Ker(T)$}. $\square$.
 \end{document}
 
 
